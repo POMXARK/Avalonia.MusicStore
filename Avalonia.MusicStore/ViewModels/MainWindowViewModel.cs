@@ -1,4 +1,5 @@
 ﻿using ReactiveUI;
+using System.Reactive.Linq;
 using System.Windows.Input;
 
 namespace Avalonia.MusicStore.ViewModels
@@ -7,12 +8,16 @@ namespace Avalonia.MusicStore.ViewModels
     {
         public MainWindowViewModel()
         {
-            BuyMusicCommand = ReactiveCommand.Create(() =>
-            { 
-                // Code here will be executed when the button is clicked. }); }
-            });
+            ShowDialog = new Interaction<MusicStoreViewModel, AlbumViewModel?>();
 
+            BuyMusicCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                var store = new MusicStoreViewModel();
+
+                var result = await ShowDialog.Handle(store);
+            });
         }
         public ICommand BuyMusicCommand { get; }
+        public Interaction<MusicStoreViewModel, AlbumViewModel?> ShowDialog { get; }
     }      
 }

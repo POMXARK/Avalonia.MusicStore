@@ -10,6 +10,7 @@
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent"
         ExtendClientAreaToDecorationsHint="True"
+        WindowStartupLocation="CenterScreen"
         >
 
     <Design.DataContext>
