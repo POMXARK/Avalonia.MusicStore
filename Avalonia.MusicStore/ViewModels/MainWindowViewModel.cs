@@ -24,6 +24,8 @@ namespace Avalonia.MusicStore.ViewModels
                 if (result != null)
                 {
                     Albums.Add(result);
+
+                    await result.SaveToDiskAsync();
                 }
             });
 
